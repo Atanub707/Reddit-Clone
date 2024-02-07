@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reddit-clone-deployment
+  name: reddit-deployment
   labels:
     app: reddit-clone
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: reddit-clone
@@ -15,7 +15,7 @@ spec:
         app: reddit-clone
     spec:
       containers:
-      - name: reddit-clone
-        image: rohanrustagi18/redditclone
+      - name: reddit
+        image: atanubiswas/reddit
         ports:
         - containerPort: 3000

@@ -9,7 +9,6 @@ spec:
     # Selector for Pods
     app: reddit-clone
   ports:
-    # Port Map
   - port: 3000
     targetPort: 3000
     protocol: TCP
