@@ -1,25 +1,23 @@
-name: Publish Docker image
+name: Push to Docker Hub
 
 on:
   push:
-    branches: ['master']
+    branches:
+      - master
 
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  push_to_docker_hub:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
-        steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-        
-        - name: Log in to Docker Hub
-          run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-        
-        - name: Build the Docker image
-          run: docker build -t atanubiswas/reddit:latest .
-        
-        - name: Push the Docker image
-          run: docker push atanubiswas/reddit:latest
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    - name: Build the Docker image
+      run: docker build -t atanubiswas/reddit:latest .
+
+    - name: Push the Docker image
+      run: docker push atanubiswas/reddit:latest
